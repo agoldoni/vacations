@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.BluetoothSearching
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Delete
@@ -46,6 +47,7 @@ import it.goldoni.vacations.data.Vacation
 @Composable
 fun VacationListScreen(
     onVacationClick: (Long) -> Unit,
+    onReceiveClick: () -> Unit,
     viewModel: VacationListViewModel = viewModel(factory = VacationListViewModel.Factory),
 ) {
     val vacations by viewModel.vacations.collectAsStateWithLifecycle()
@@ -53,7 +55,19 @@ fun VacationListScreen(
     var vacationToDelete by remember { mutableStateOf<Vacation?>(null) }
 
     Scaffold(
-        topBar = { TopAppBar(title = { Text("Le mie vacanze") }) },
+        topBar = {
+            TopAppBar(
+                title = { Text("Le mie vacanze") },
+                actions = {
+                    IconButton(onClick = onReceiveClick) {
+                        Icon(
+                            Icons.AutoMirrored.Filled.BluetoothSearching,
+                            contentDescription = "Ricevi via Bluetooth",
+                        )
+                    }
+                },
+            )
+        },
         floatingActionButton = {
             FloatingActionButton(onClick = { showAddDialog = true }) {
                 Icon(Icons.Default.Add, contentDescription = "Nuova vacanza")

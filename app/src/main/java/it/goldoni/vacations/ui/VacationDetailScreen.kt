@@ -19,6 +19,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Bluetooth
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Delete
@@ -58,6 +59,7 @@ import it.goldoni.vacations.data.PlannedActivity
 fun VacationDetailScreen(
     vacationId: Long,
     onBack: () -> Unit,
+    onSendClick: () -> Unit,
     viewModel: VacationDetailViewModel = viewModel(factory = VacationDetailViewModel.factory(vacationId)),
 ) {
     val context = LocalContext.current
@@ -83,6 +85,9 @@ fun VacationDetailScreen(
                     }
                 },
                 actions = {
+                    IconButton(onClick = onSendClick) {
+                        Icon(Icons.Default.Bluetooth, contentDescription = "Invia via Bluetooth")
+                    }
                     IconButton(onClick = { showEditVacation = true }) {
                         Icon(Icons.Default.Edit, contentDescription = "Modifica vacanza")
                     }

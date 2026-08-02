@@ -10,6 +10,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import it.goldoni.vacations.ui.SyncReceiveScreen
+import it.goldoni.vacations.ui.SyncSendScreen
 import it.goldoni.vacations.ui.VacationDetailScreen
 import it.goldoni.vacations.ui.VacationListScreen
 import it.goldoni.vacations.ui.theme.VacationsTheme
@@ -33,6 +35,7 @@ private fun VacationsNavHost() {
         composable("vacations") {
             VacationListScreen(
                 onVacationClick = { id -> navController.navigate("vacation/$id") },
+                onReceiveClick = { navController.navigate("sync/receive") },
             )
         }
         composable(
@@ -41,6 +44,22 @@ private fun VacationsNavHost() {
         ) { backStackEntry ->
             val vacationId = backStackEntry.arguments?.getLong("vacationId") ?: return@composable
             VacationDetailScreen(
+                vacationId = vacationId,
+                onBack = { navController.popBackStack() },
+                onSendClick = { navController.navigate("sync/send/$vacationId") },
+            )
+        }
+        composable("sync/receive") {
+            SyncReceiveScreen(
+                onBack = { navController.popBackStack() },
+            )
+        }
+        composable(
+            route = "sync/send/{vacationId}",
+            arguments = listOf(navArgument("vacationId") { type = NavType.LongType }),
+        ) { backStackEntry ->
+            val vacationId = backStackEntry.arguments?.getLong("vacationId") ?: return@composable
+            SyncSendScreen(
                 vacationId = vacationId,
                 onBack = { navController.popBackStack() },
             )
