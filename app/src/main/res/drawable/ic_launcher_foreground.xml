@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Tempio classico stilizzato (frontone, quattro colonne, basamento),
+     bianco, centrato nella safe zone dell'adaptive icon -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Frontone -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M54,29 L77,45 H31 Z" />
+
+    <!-- Architrave -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M33,48 h42 v4 h-42 z" />
+
+    <!-- Colonne -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M35,55 h5 v16 h-5 z M46,55 h5 v16 h-5 z M57,55 h5 v16 h-5 z M68,55 h5 v16 h-5 z" />
+
+    <!-- Basamento -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M33,74 h42 v4 h-42 z" />
+</vector>
